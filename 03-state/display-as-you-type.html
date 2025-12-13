@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Display as you type</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script type="text/babel">
+
+      function LiveInput() {
+        const [inputValue, setInputValue] = React.useState('');
+        
+        function updateInputPara(event) {
+          setInputValue(event.target.value);
+        }
+
+        function resetParagraph() {
+          setInputValue('');
+        }
+        
+        function exampleButton() {
+          setInputValue('an example name');
+        }
+
+        return (
+          <>
+            <input
+              placeholder="Enter text here"
+              onChange={updateInputPara}
+              value={inputValue}
+            />
+            <button
+              onClick={resetParagraph}
+            >Reset
+            </button>
+            <button
+              onClick={exampleButton}
+            >Example
+            </button>
+            <p>{inputValue}</p>
+          </>
+        );
+      }
+
+      function App() {
+        
+        return (
+          <>
+            <LiveInput/>
+          </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

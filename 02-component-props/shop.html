@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shop</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script type="text/babel">
+      function App() {
+        return (
+          <>
+            <ProductDetails
+              productName="Cotton Socks"
+              priceCents="1090"
+              discountPrice="545" 
+              imgSource="images/cotton-socks.png"
+            />
+            <ProductDetails 
+              productName="Tennis Balls" 
+              priceCents="600" 
+              imgSource="images/tennis-balls.png"
+            />
+            <ProductDetails 
+              productName="Plain T-Shirt" 
+              priceCents="799" 
+              imgSource="images/plain-t-shirt.png"
+            />
+          </>
+        );
+      }
+
+      function ProductDetails({productName, priceCents, discountPrice, imgSource}) {
+        return (
+          <div>
+            <img src={imgSource} width="150" />
+            <p>{productName}</p>
+            {
+              !discountPrice
+                ? (<p>Price: ${(Math.round(priceCents/100)).toFixed(2)}</p>)
+                : (<del>Price: ${(Math.round(priceCents/100)).toFixed(2)}</del>)
+            }
+            <p>{discountPrice && `Discount price: $${(Math.round(discountPrice/100)).toFixed(2)}`}</p>
+            <button>Add to Cart</button>
+          </div>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

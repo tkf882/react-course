@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter</title>
+    <style>
+      body {
+        margin: 0px;
+      }
+      .counter-buttons {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        border: none;
+        padding: 10px 10px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script type="text/babel">
+      
+      function App() {
+        const [numTimes, setNumTimes] = React.useState(0);
+        const buttonRef = React.useRef(null);
+
+        function updateCounter() {
+          setNumTimes(numTimes+1);
+        }
+
+        function resetCounter() {
+          setNumTimes(0);
+        }
+
+        function autoClick() {
+          setInterval(() => {
+            const buttonEle = buttonRef.current;
+            if (buttonEle) {
+              buttonEle.click();
+            }
+          }, 1000);
+        }
+
+        return (
+          <div className="button-container">
+            <button 
+              className = "counter-buttons"
+              onClick={updateCounter}
+              ref={buttonRef}
+            >Clicked {numTimes} {numTimes === 1 ? 'time' : 'times'}
+            </button>
+            <button
+              className = "counter-buttons"
+              onClick={resetCounter}  
+            >Reset
+            </button>
+            <button
+              className = "counter-buttons"
+              onClick={autoClick}  
+            >Autoclick
+            </button>
+          </div>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
