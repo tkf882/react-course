@@ -1,0 +1,20 @@
+.login-input {
+  font-size: 12px;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+}
+button {
+  color: white;
+  background-color: rgb(0, 123, 255);
+  margin-top: 15px;
+  margin-right: 5px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 8px 10px;
+}
+.show-password-button {
+  margin-left: 5px;
+}

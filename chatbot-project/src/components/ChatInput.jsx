@@ -1,6 +1,7 @@
 import LoadingSpinGif from '..//assets/loading-spinner.gif';
 import { useState } from 'react'
 import { Chatbot } from 'supersimpledev';
+import dayjs from 'dayjs';
 
 import './ChatInput.css';
 
@@ -20,11 +21,15 @@ export function ChatInput({chatMessages, setChatMessages}) {
 
     setInputText(''); // reset the input text
 
+    // set up time
+    const time = dayjs().valueOf();
+
     const newChatMessages = [
       ...chatMessages,
       {
         message: inputText,
         sender: 'user',
+        time: time,
         id: crypto.randomUUID()
       }
     ];
@@ -34,6 +39,7 @@ export function ChatInput({chatMessages, setChatMessages}) {
       {
         message: (<img className="loading-spinner" src={LoadingSpinGif}/>),
         sender: 'robot',
+        time: time,
         id: crypto.randomUUID()
       }
     ]);
@@ -48,6 +54,7 @@ export function ChatInput({chatMessages, setChatMessages}) {
       {
         message: response,
         sender: 'robot',
+        time: time,
         id: crypto.randomUUID()
       }
     ]);
@@ -61,6 +68,10 @@ export function ChatInput({chatMessages, setChatMessages}) {
     } else if (event.key == 'Escape') {
       setInputText(''); // reset the input text
     }
+  }
+
+  function clearMessages() {
+    setChatMessages([]);
   }
   
 
@@ -78,6 +89,10 @@ export function ChatInput({chatMessages, setChatMessages}) {
         onClick={sendMessage}
         className="send-button"
       >Send</button>
+      <button
+        onClick={clearMessages}
+        className="clear-button"
+      >Clear</button>
     </div>
   );
 }

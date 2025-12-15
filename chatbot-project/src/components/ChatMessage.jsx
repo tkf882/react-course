@@ -1,9 +1,11 @@
 import RobotProfileImage from '../assets/robot.png';
 import UserProfileImage from '../assets/user.png';
+import MyProfileImage from '../assets/me.png';
+import dayjs from 'dayjs';
 
 import './ChatMessage.css'
 
-export function ChatMessage({message, sender}) { // destructure the object in the parameter
+export function ChatMessage({message, sender, time}) { // destructure the object in the parameter
   // function ChatMessage(props) {
   // const message = props.message;
   // const sender = props.sender;
@@ -19,6 +21,7 @@ export function ChatMessage({message, sender}) { // destructure the object in th
       )}
       <div className="chat-message-text">
         {message}
+        <p className="chat-message-time">{dayjs(time).format('h:mma')}</p>
       </div>
       {sender === 'user' && 
       (<img src={UserProfileImage} className="chat-message-profile"/>
